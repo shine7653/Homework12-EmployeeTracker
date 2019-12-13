@@ -4,8 +4,8 @@
   "description": "Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. In this homework assignment, your challenge is to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,6 @@
     "console.table": "^0.10.0",
     "inquirer": "^7.0.0",
     "mysql": "^2.17.1"
-  }
+  },
+  "devDependencies": {}
 }
