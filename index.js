@@ -84,11 +84,11 @@ function viewEmployee() {
   var query =
     `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
   FROM employee e
-  JOIN role r
+  LEFT JOIN role r
 	ON e.role_id = r.id
-  JOIN department d
+  LEFT JOIN department d
   ON d.id = r.department_id
-  JOIN employee m
+  LEFT JOIN employee m
 	ON m.id = e.manager_id`
 
   connection.query(query, function (err, res) {
@@ -112,9 +112,9 @@ function viewEmployeeByDepartment() {
   var query =
     `SELECT d.id, d.name, r.salary AS budget
   FROM employee e
-  JOIN role r
+  LEFT JOIN role r
 	ON e.role_id = r.id
-  JOIN department d
+  LEFT JOIN department d
   ON d.id = r.department_id
   GROUP BY d.id, d.name`
 
@@ -189,7 +189,7 @@ function addEmployee() {
     `SELECT r.id, r.title, r.salary 
       FROM role r`
 
-  connections.query(query, function (err, res) {
+  connection.query(query, function (err, res) {
     if (err) throw err;
 
     const roleChoices = res.map(({ id, title, salary }) => ({
@@ -239,8 +239,8 @@ function promptInsert(roleChoices) {
         {
           first_name: answer.first_name,
           last_name: answer.last_name,
-          roleId: answer.roleId,
-          managerId: answer.managerId,
+          role_id: answer.roleId,
+          manager_id: answer.managerId,
         },
         function (err, res) {
           if (err) throw err;
